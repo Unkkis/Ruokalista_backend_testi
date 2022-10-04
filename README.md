@@ -6,3 +6,7 @@ appsi myös arpoo ruokalistan viikoksi (tai useammaksi) (yksi ruoka/päivä) tie
 
 
 Appsi myös arpoo yhden reseptin.
+
+Databasessa taulut siis (tämä ei vielä valmis):
+- ruoka ja siihen tarvittavat ainekset
+- ainekset (tämän ja reseptien välillä many-to-many)
