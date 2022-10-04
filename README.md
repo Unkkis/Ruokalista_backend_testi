@@ -10,3 +10,4 @@ Appsi myös arpoo yhden reseptin.
 Databasessa taulut siis (tämä ei vielä valmis):
 - ruoka ja siihen tarvittavat ainekset
 - ainekset (tämän ja reseptien välillä many-to-many)
+- missä tehdään (uuni, pannu, grilli, pata?)
