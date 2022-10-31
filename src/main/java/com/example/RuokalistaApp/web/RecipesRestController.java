@@ -36,12 +36,21 @@ public class RecipesRestController {
 		return recipeRepository.findAll();
 	}
 	
-	//return 7 random recipes from database
-	@GetMapping({"/api/random_week", "/api"})
-	public  Iterable<Recipe> getSevenRecipes(){
+	//return 1 random recipe from database
+	@GetMapping({"/api", "/api/random_one"})
+	public Recipe getOneRandomRecipe(){
 		ArrayList<Recipe> allRecipes = (ArrayList<Recipe>) recipeRepository.findAll();
 		Collections.shuffle(allRecipes);
-		int howManyRecipes = 7;
+		Recipe oneRecipe = allRecipes.get(0);
+		return oneRecipe;
+	}
+	
+	//return 7 random recipes from database
+	@GetMapping("/api/random_{number}days")
+	public  Iterable<Recipe> getSevenRecipes(@PathVariable("number")int number){
+		ArrayList<Recipe> allRecipes = (ArrayList<Recipe>) recipeRepository.findAll();
+		Collections.shuffle(allRecipes);
+		int howManyRecipes = number;
 		ArrayList<Recipe> sevenRecipes = new ArrayList<Recipe>();
 		for (int i = 0; i<howManyRecipes; i++) {
 			sevenRecipes.add(allRecipes.get(i));
