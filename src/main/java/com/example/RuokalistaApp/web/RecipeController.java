@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.RuokalistaApp.domain.CategoryRepository;
 import com.example.RuokalistaApp.domain.FoodItemRepository;
-import com.example.RuokalistaApp.domain.ReceptRepository;
+import com.example.RuokalistaApp.domain.RecipeRepository;
 
 @Controller
-public class ReceptController {
+public class RecipeController {
 	@Autowired
-	private ReceptRepository receptRepository;
+	private RecipeRepository recipeRepository;
 	@Autowired 
 	private CategoryRepository categoryRepository;
 	@Autowired
@@ -21,19 +21,19 @@ public class ReceptController {
 	
 	//mainpage
 	@GetMapping(value = {"/", "/main", "/index"})
-	public String recept(Model model) {
+	public String recipe(Model model) {
 		return "mainpage";
 	}
 	
-	//list all recepts
+	//list all recipes
 	
-	//add recept
+	//add recipe
 	
-	//edit recept
+	//edit recipe
 	
-	//save recept
+	//save recipe
 	
-	//delete recept
+	//delete recipe
 	
 	//add (+modify) fooditems
 	

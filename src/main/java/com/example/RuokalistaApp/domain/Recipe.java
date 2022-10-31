@@ -1,7 +1,9 @@
 package com.example.RuokalistaApp.domain;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,48 +13,77 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-public class Recept {
+public class Recipe {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private String name;
+	
 	@ManyToMany
 	@JoinTable(
-			name="recept_ingredients",
-			joinColumns = @JoinColumn(name="recept_id"),
+			name="recipe_ingredients",
+			joinColumns = @JoinColumn(name="recipe_id"),
 			inverseJoinColumns = @JoinColumn(name = "food_item_id"))
-	private List<FoodItem> foodIngredients;
+	private Set<FoodItem> foodIngredients;
 	
+	@Column (name="cooking_time")
 	private String cookingTime;
 	private String preparation;
+	@Column (name="link_to_webpage")
 	private String linkToWebpage;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
 	private Category category;
 
-	public Recept() {
+	public Recipe() {
 		super();
 	}
 
-	public Recept(List<FoodItem> ingredients, String cookingTime, String preparation, String linkToWebpage,
-			Category category) {
+	
+	public Recipe(String name, Set<FoodItem> foodIngredients, String cookingTime, String preparation,
+			String linkToWebpage, Category category) {
 		super();
-		this.foodIngredients = ingredients;
+		this.name = name;
+		this.foodIngredients = foodIngredients;
 		this.cookingTime = cookingTime;
 		this.preparation = preparation;
 		this.linkToWebpage = linkToWebpage;
 		this.category = category;
 	}
 
-	public Recept(String cookingTime, String preparation, String linkToWebpage) {
+	
+	public Recipe(String name, Set<FoodItem> foodIngredients, String cookingTime, String preparation,
+			String linkToWebpage) {
 		super();
+		this.name = name;
+		this.foodIngredients = foodIngredients;
 		this.cookingTime = cookingTime;
 		this.preparation = preparation;
 		this.linkToWebpage = linkToWebpage;
 	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public void setFoodIngredients(Set<FoodItem> foodIngredients) {
+		this.foodIngredients = foodIngredients;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -62,11 +93,11 @@ public class Recept {
 		this.id = id;
 	}
 
-	public List<FoodItem> getFoodIngredients() {
+	public Set<FoodItem> getFoodIngredients() {
 		return foodIngredients;
 	}
 
-	public void setIngredients(List<FoodItem> ingredients) {
+	public void setIngredients(Set<FoodItem> ingredients) {
 		this.foodIngredients = ingredients;
 	}
 

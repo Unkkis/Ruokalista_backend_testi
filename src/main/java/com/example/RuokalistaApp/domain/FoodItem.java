@@ -1,12 +1,15 @@
 package com.example.RuokalistaApp.domain;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class FoodItem {
@@ -16,8 +19,9 @@ public class FoodItem {
 	private Long id;
 	private String name;
 	
+	@JsonIgnore
 	@ManyToMany (mappedBy = "foodIngredients")
-	private List<Recept> recepts;
+	private Set<Recipe> recipes;
 	
 	public FoodItem() {
 		super();

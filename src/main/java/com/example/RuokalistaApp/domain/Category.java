@@ -21,7 +21,7 @@ public class Category {
 	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-	private List<FoodItem> foodItems;
+	private List<Recipe> recipes;
 
 	public Category() {
 		super();
@@ -48,17 +48,17 @@ public class Category {
 		this.name = name;
 	}
 
-	public List<FoodItem> getFoodItems() {
-		return foodItems;
+	public List<Recipe> getFoodItems() {
+		return recipes;
 	}
 
-	public void setFoodItems(List<FoodItem> foodItems) {
-		this.foodItems = foodItems;
+	public void setFoodItems(List<Recipe> recipes) {
+		this.recipes = recipes;
 	}
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + ", foodItems=" + foodItems + "]";
+		return "Category [id=" + id + ", name=" + name + ", recepts=" + recipes + "]";
 	}
 
 
