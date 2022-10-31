@@ -20,7 +20,7 @@ name VARCHAR (100) NOT NULL,
 PRIMARY KEY (id)
 );
 INSERT INTO food_item(name)
-VALUES ('Peruna'), ('Jauheliha)'), ('Spaghetti'), ('Tomaattimurska'), ('Tomaattipyre'), ('Jauhot'),
+VALUES ('Peruna'), ('Jauheliha'), ('Spaghetti'), ('Tomaattimurska'), ('Tomaattipyre'), ('Jauhot'),
 ('Lihaliemikuutio'), ('Suola'), ('Pippuri'), ('Voi'), ('Punaviini');
 
 CREATE TABLE recipe (
