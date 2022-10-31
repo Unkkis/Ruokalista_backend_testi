@@ -40,7 +40,6 @@ public class RecipeController {
 	//add category
 	
 
-	
-	//edit
+	//add, edit, delete USERS
 	
 }
