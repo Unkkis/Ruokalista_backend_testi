@@ -26,7 +26,7 @@ public class WebSecurityConfig {
 			auth.antMatchers("/css/**").permitAll();
 			auth.antMatchers("/main/**").permitAll();
 			auth.antMatchers("/add/**").hasAuthority("ADMIN");
-		//	auth.antMatchers("/api/**").hasAuthority("ADMIN");
+			auth.antMatchers("/api/recipes/**").hasAuthority("ADMIN");
 			auth.anyRequest().authenticated();
 		})
 				// tells where to go after successful login

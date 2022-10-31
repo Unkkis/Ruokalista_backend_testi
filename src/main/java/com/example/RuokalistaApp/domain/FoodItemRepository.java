@@ -5,5 +5,6 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 public interface FoodItemRepository extends CrudRepository<FoodItem, Long> {
-	List<FoodItem> findByName(String name);
+	FoodItem findByName(String name);
+	List<FoodItem> findFoodItemsByName(String name);
 }
