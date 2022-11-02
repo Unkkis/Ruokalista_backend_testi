@@ -7,16 +7,48 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
  	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-
-
-
-
-		<div class="container" >
-			<div class="col text-center">
-				<p></p>
-				<p></p>
-				<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
-			</div>
+<div class="container">
+	<div class="row justify-content-start">
+		<div class="col-lg-4">
+			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
+			<a href="/main" class="btn btn-primary">Etusivulle</a>
 		</div>
+		<div class="col-lg-8">
+			<h3>Tässä on kaikki reseptit</h3>
+		</div>
+	</div>
+</div>
+	<div class="container">
+		<div class="text-break">
+			<table class="table table-striped">
+				<tr>
+					<th scope="col">Nimi</th>
+					<th scope="col">Valmistusaika</th>
+					<th scope="col">www-sivu</th>
+					<th scope="col">Kategoria</th>
+					<th scope="col">Ainekset</th>
+					<th scope="col">Valmistusohjeet</th>
+					<th scope="col" colspan="2" sec:authorize="hasAuthority('ADMIN')"></th>
+				</tr>
+				<tr th:each="recipe : ${recipes}">
+					<td scope="row" th:text="${recipe.name}"></td>
+					<td th:text="|${recipe.cookingTime} minuuttia|"></td>
+					<td><a th:href="@{|http://${recipe.linkToWebpage}|}">Linkki</a></td>
+					<td th:text="${recipe.category.name}"></td>
+					<td>
+						<ul class="list-unstyled m-0"  th:each="ingredient : ${recipe.foodIngredients}">
+							<li th:text="${ingredient.name}"></li>
+						</ul>
+					</td>
+					<td th:text="${recipe.preparation}" ></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${recipe.id})}"
+						th:onclick="if(!(confirm('Haluatko varmasti poistaa reseptin?') )) return false" 
+						class="btn btn-danger">Delete</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit/{id}(id=${recipe.id})}"
+						class="btn btn-primary">Edit</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
