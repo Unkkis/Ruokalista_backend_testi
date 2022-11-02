@@ -10,25 +10,34 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 <body>
 
 <div class="container">
-	<div class="col text-center">
-		<h1>Moikka [[${#httpServletRequest.remoteUser}]]! Tervetuloa ruokalista Appiin</h1>
+	<div class="row justify-content-start">
+		<div class="col-lg-4">
+			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
+		</div>
+		<div class="col-lg-8">
+			<h3>Moikka [[${#httpServletRequest.remoteUser}]]! Tervetuloa ruokalista Appiin</h3>
+		</div>
+
 	</div>
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-lg">
+		<div class="col-lg py-5">
 			<a href="/allRecipes" class="btn btn-primary">Täältä näet kaikki reseptit</a>
 			<p></p>
 			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
 			<p></p>
-			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
+
 		</div>
-		<div class="col-lg">
+		<div class="col-lg py-5">
 			<p>Tässä appsissa voit luoda ruokalistoja. Appsiin on myös API, jos haluat tehdä jotain muuta kivaa tämän päälle.</p>
 		</div>
+		<div class="col-lg">
+			<img src="/images/JSON.png" alt="Json string" style="width:100%;">
+		</div>
 	</div>
-</div>
 
+</div>
 
 </body>
 </html>
