@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Ruokalista app | By Unkkis</title>
+	<meta charset="UTF-8" />
+ 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div class="container">
+	<div class="col text-center">
+		<h1>Moikka [[${#httpServletRequest.remoteUser}]]! Tervetuloa ruokalista Appiin</h1>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg">
+			<a href="/allRecipes" class="btn btn-primary">Täältä näet kaikki reseptit</a>
+			<p></p>
+			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
+			<p></p>
+			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
+		</div>
+		<div class="col-lg">
+			<p>Tässä appsissa voit luoda ruokalistoja. Appsiin on myös API, jos haluat tehdä jotain muuta kivaa tämän päälle.</p>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

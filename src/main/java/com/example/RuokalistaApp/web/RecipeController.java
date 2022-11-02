@@ -21,11 +21,15 @@ public class RecipeController {
 	
 	//mainpage
 	@GetMapping(value = {"/", "/main", "/index"})
-	public String recipe(Model model) {
+	public String main() {
 		return "mainpage";
 	}
 	
 	//list all recipes
+	@GetMapping("/allRecipes")
+	public String recipe(Model model) {
+		return "allRecipes";
+	}
 	
 	//add recipe
 	
