@@ -1,6 +1,5 @@
 package com.example.RuokalistaApp.domain;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,8 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Recipe {
@@ -37,7 +34,7 @@ public class Recipe {
 	@Column (name="link_to_webpage")
 	private String linkToWebpage;
 	
-	@JsonIgnore
+	
 	@ManyToOne
 	@JoinColumn(name = "categoryid")
 	private Category category;
@@ -67,6 +64,18 @@ public class Recipe {
 		this.cookingTime = cookingTime;
 		this.preparation = preparation;
 		this.linkToWebpage = linkToWebpage;
+	}
+	
+	
+
+	public Recipe(String name, String cookingTime, String preparation, String linkToWebpage,
+			Category category) {
+		super();
+		this.name = name;
+		this.cookingTime = cookingTime;
+		this.preparation = preparation;
+		this.linkToWebpage = linkToWebpage;
+		this.category = category;
 	}
 
 

@@ -1,6 +1,6 @@
 package com.example.RuokalistaApp.domain;
 
-import java.util.List;
+
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -46,6 +46,14 @@ public class FoodItem {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Recipe> getRecipes() {
+		return recipes;
+	}
+
+	public void setRecipes(Set<Recipe> recipes) {
+		this.recipes = recipes;
 	}
 
 	@Override

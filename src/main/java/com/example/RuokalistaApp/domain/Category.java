@@ -48,11 +48,11 @@ public class Category {
 		this.name = name;
 	}
 
-	public List<Recipe> getFoodItems() {
+	public List<Recipe> getRecipes() {
 		return recipes;
 	}
 
-	public void setFoodItems(List<Recipe> recipes) {
+	public void setRecipes(List<Recipe> recipes) {
 		this.recipes = recipes;
 	}
 

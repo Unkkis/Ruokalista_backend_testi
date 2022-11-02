@@ -106,7 +106,7 @@ public class RecipesRestController {
 		return ingredientRepository.findByName(name);
 	}
 	
-	//find and list all receipts by category
+	//find and list all recipe categories
 	@GetMapping("/api/categories")
 	public Iterable<Category> getAllCategories(){
 		return categoryRepository.findAll();
