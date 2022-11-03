@@ -35,15 +35,12 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
     <input type="text" th:field="*{cookingTime}" class="form-control" placeholder="Anna valmistusaika minuuteissa">
   </div>
   <div class="form-group">
-  	<select th:field="*{foodIngredients}" name="ingredients" class="ingredients" multiple>
+  	<label for="ingredients">Ainesosat tietokannassa (Ctrl näppäimellä voit valita useita")</label>
+  	<select th:field="*{foodIngredients}" name="ingredients" id="ingredients" class="form-control" multiple>
   		<option th:each="ingredient: ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.name}"></option>
   	</select>
-  	<select name="chosen-ingredients" class="chosen-ingredients" multiple>
-  	</select>
-  	<input type="button" value="Lisää aineksiin" onclick="chooseIngredient();">
-    <input type="button" value="Poista aineksista" onclick="removeIngredient();">
   </div>
-    <div class="form-group">
+  <div class="form-group">
     <label for="preparation">Valmistusohjeet</label>
     <input type="text" th:field="*{preparation}" class="form-control" placeholder="Kerro miten ruoka valmistetaan">
   </div>
@@ -56,17 +53,4 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 </form>
 </div>
 </body>
-<script>
-function chooseIngredient()
-{
-    var chosen = $('.ingredients option:selected');
-    chosen.appendTo('.chosen-ingredients');
-}
-
-function removeIngredient()
-{
-    var chosen = $('.chosen-ingredients option:selected');
-    chosen.appendTo('.ingredients');
-}
-</script>
 </html>
