@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Ruokalista app | By Unkkis</title>
+	<meta charset="UTF-8" />
+ 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<div class="row justify-content-start">
+		<div class="col-lg-4">
+			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
+			<a href="/main" class="btn btn-primary">Etusivulle</a>
+			<a href="/allRecipes" class="btn btn-primary">Reseptilistaan</a>
+		</div>
+		<div class="col-lg-8">
+			<h3>Ainesosat</h3>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg">
+			<form th:object="${ingredient}" th:action="@{addIngredient}" method="post">
+				<label for="newIngredient">Anna ainesosa</label>
+				<input type="text" th:field="*{name}" class="form-control">
+				<button type="submit" class="btn btn-primary">Lisää</button>
+			</form>
+		</div>
+		<div class="col-lg">
+			<table class="table-striped">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Nimi</th>
+				</tr>
+				<tr th:each="ingredient : ${ingredients}">
+					<td scope="row" th:text="${ingredient.id}"/>
+					<td scope="row" th:text="${ingredient.name}"/>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>

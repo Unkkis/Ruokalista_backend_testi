@@ -81,12 +81,8 @@ public class RecipeController {
 	}
 	
 	//make a random recipe list for a week (7 days)
-	
-	//add (+modify) fooditems
-	
-	//add category
-	
 
-	//add, edit, delete USERS
+
+
 	
 }

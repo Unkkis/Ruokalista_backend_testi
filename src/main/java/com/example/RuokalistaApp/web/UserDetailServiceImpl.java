@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.example.RuokalistaApp.domain.ApplicationUser;
-import com.example.RuokalistaApp.domain.UserRepository;
+import com.example.RuokalistaApp.domain.ApplicationUserRepository;
 
 
 /**
@@ -21,11 +21,11 @@ import com.example.RuokalistaApp.domain.UserRepository;
 public class UserDetailServiceImpl implements UserDetailsService {
 	
 	private static final Logger log = LoggerFactory.getLogger(UserDetailServiceImpl.class);
-	private final UserRepository repository;
+	private final ApplicationUserRepository repository;
 
 		@Autowired
-		public UserDetailServiceImpl(UserRepository userRepository) {
-			this.repository = userRepository;
+		public UserDetailServiceImpl(ApplicationUserRepository applicationUserRepository) {
+			this.repository = applicationUserRepository;
 		}
 		
 		

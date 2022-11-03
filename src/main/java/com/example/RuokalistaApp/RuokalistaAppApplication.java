@@ -4,13 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.example.RuokalistaApp.domain.UserRepository;
+import com.example.RuokalistaApp.domain.ApplicationUserRepository;
 
 @SpringBootApplication
 public class RuokalistaAppApplication {
 
 	@Autowired
-	UserRepository userRepository;
+	ApplicationUserRepository applicationUserRepository;
 	
 	
 	public static void main(String[] args) {

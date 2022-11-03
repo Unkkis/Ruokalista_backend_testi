@@ -24,10 +24,9 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 	<div class="row">
 		<div class="col-lg py-5">
 			<a href="/allRecipes" class="btn btn-primary">Täältä näet kaikki reseptit</a>
-			<p></p>
 			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
-			<p></p>
-
+			<a href="/ingredients" class="btn btn-primary">Ainesosalista</a>
+			<a href="/categories" class="btn btn-primary">Reseptikategoriat</a>
 		</div>
 		<div class="col-lg py-5">
 			<p>Tässä appsissa voit luoda ruokalistoja. Appsiin on myös API, jos haluat tehdä jotain muuta kivaa tämän päälle.</p>

@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Ruokalista app | By Unkkis</title>
+	<meta charset="UTF-8" />
+ 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+	<div class="row justify-content-start">
+		<div class="col-lg-4">
+			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
+			<a href="/main" class="btn btn-primary">Etusivulle</a>
+			<a href="/allRecipes" class="btn btn-primary">Reseptilistaan</a>
+		</div>
+		<div class="col-lg-8">
+			<h3>Käyttäjät</h3>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg">
+			<h4>Lisää käyttäjä:</h4>
+			<form th:object="${newUser}" th:action="@{/adduser}" method="post">
+				<label for="firstName">Etunimi</label>
+				<input type="text" th:field="*{firstName}" class="form-control">
+				<label for="firstName">Sukunimi</label>
+				<input type="text" th:field="*{lastName}" class="form-control">
+				<label for="firstName">Rooli</label>
+				<input type="text" th:field="*{role}" class="form-control">
+				<button type="submit" class="btn btn-primary">Lisää</button>			
+			</form>
+		</div>
+		<div class="col-lg">
+			<table class="table-striped">
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Etunimi</th>
+					<th scope="col">Sukunimi</th>
+					<th scope="col">rooli</th>
+				</tr>
+				<tr th:each="user : ${users}">
+					<td scope="row" th:text="${user.id}"/>
+					<td scope="row" th:text="${user.firstName}"/>
+					<td scope="row" th:text="${user.lastName}"/>
+					<td scope="row" th:text="${user.role}"/>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>
