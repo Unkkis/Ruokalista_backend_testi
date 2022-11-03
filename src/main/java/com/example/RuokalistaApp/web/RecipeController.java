@@ -52,6 +52,11 @@ public class RecipeController {
 	//save recipe
 	@PostMapping("/save")
 	public String saveRecipe(@Valid Recipe recipe, BindingResult result, Model model) {
+		try{
+		    Integer.parseInt(recipe.getCookingTime());
+		}catch (NumberFormatException ex) {
+		    result.rejectValue("cookingTime", "err.cookingTime", "Et syöttänyt aikaa oikein.");
+		}
 		if (result.hasErrors()) {
 			model.addAttribute("categories", categoryRepository.findAll());
 			model.addAttribute("ingredients", foodItemRepository.findAll());

@@ -15,7 +15,7 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
 		</div>
 		<div class="col-lg-8">
-			<h3>Moikka [[${#httpServletRequest.remoteUser}]]! Tervetuloa ruokalista Appiin</h3>
+			<h3>Moikka [[${#httpServletRequest.remoteUser}]]! Tervetuloa ruokalista Appsiin!</h3>
 		</div>
 
 	</div>
@@ -32,8 +32,22 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 		<div class="col-lg py-5">
 			<p>Tässä appsissa voit luoda ruokalistoja. Appsiin on myös API, jos haluat tehdä jotain muuta kivaa tämän päälle.</p>
 		</div>
+
+	</div>
+	<div class="row">
 		<div class="col-lg">
-			<img src="/images/JSON.png" alt="Json string" style="width:100%;">
+			<div>
+			<h3>Linkit APIin</h3>
+			<p>APIn osat löytyvät /api</p>
+			</div>
+			<div>
+			<a href="/api" class="btn btn-primary">/api arpoo yhden reseptin</a>
+			<a href="/api/random_7days" class="btn btn-primary">/api/random_{number}days arpoo halutun määrän</a>
+			<a href="/api/recipes/1" class="btn btn-primary">GET /api/recipes/{number} etsii ID:n avulla</a>
+			<p>Lisäksi toki voit lisätä tai poistaa, sekä muokata reseptejä</p>
+			<a href="/api/ingredients" class="btn btn-primary">/api/ingredients listaa ainesosat</a>
+			<a href="/api/categories" class="btn btn-primary">/api/categories listaa kategoriat</a>
+			</div>
 		</div>
 	</div>
 

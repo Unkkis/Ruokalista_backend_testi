@@ -66,7 +66,7 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 					<td scope="row" th:text="${user.username}"/>
 					<td scope="row" th:text="${user.role}"/>
 					<td sec:authorize="hasAuthority('ADMIN')"></td>
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteUser{id}(id=${user.id})}"
+					<td th:unless="${user.username == 'admin'}" sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteUser{id}(id=${user.id})}"
 						th:onclick="if(!(confirm('Haluatko varmasti poistaa tämän käyttäjän?') )) return false" 
 						class="btn btn-danger">Delete</a></td>
 				</tr>
