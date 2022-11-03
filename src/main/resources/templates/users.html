@@ -23,11 +23,27 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 	<div class="row">
 		<div class="col-lg">
 			<h4>Lisää käyttäjä:</h4>
-			<form th:object="${newUser}" th:action="@{/adduser}" method="post">
+			<form th:object="${newUser}" th:action="@{/addUser}" method="post">
 				<label for="firstName">Etunimi</label>
 				<input type="text" th:field="*{firstName}" class="form-control">
+				<span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Etunimi virheellinen</span>
+				
 				<label for="firstName">Sukunimi</label>
 				<input type="text" th:field="*{lastName}" class="form-control">
+				<span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Sukunimi virheellinen</span>
+				
+				<label for="username">Käyttäjänimi</label>
+				<input type="text" th:field="*{username}" class="form-control">
+				<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Käyttäjänimi virheellinen</span>
+				
+				<label for="password">Salasana:</label>
+				<input type="password" th:field="*{password}" class="form-control">
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Salasana väärän mallinen</span>
+				
+				<label for="passwordCheck">Anna salasana uudestaan:</label>
+				<input type="password" th:field="*{passwordCheck}" class="form-control">
+				<span th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">Salasanat eivät täsmää</span>	
+				
 				<label for="firstName">Rooli</label>
 				<input type="text" th:field="*{role}" class="form-control">
 				<button type="submit" class="btn btn-primary">Lisää</button>			
@@ -39,13 +55,20 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 					<th scope="col">Id</th>
 					<th scope="col">Etunimi</th>
 					<th scope="col">Sukunimi</th>
-					<th scope="col">rooli</th>
+					<th scope="col">Käyttäjänimi</th>
+					<th scope="col">Rooli</th>
+					<th scope="col" colspan="2" sec:authorize="hasAuthority('ADMIN')">Poista käyttäjä</th>
 				</tr>
 				<tr th:each="user : ${users}">
 					<td scope="row" th:text="${user.id}"/>
 					<td scope="row" th:text="${user.firstName}"/>
 					<td scope="row" th:text="${user.lastName}"/>
+					<td scope="row" th:text="${user.username}"/>
 					<td scope="row" th:text="${user.role}"/>
+					<td sec:authorize="hasAuthority('ADMIN')"></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/deleteUser{id}(id=${user.id})}"
+						th:onclick="if(!(confirm('Haluatko varmasti poistaa tämän käyttäjän?') )) return false" 
+						class="btn btn-danger">Delete</a></td>
 				</tr>
 			</table>
 		</div>
