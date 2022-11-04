@@ -12,3 +12,11 @@ Databasessa taulut siis (tämä ei vielä valmis):
 - ruoka ja siihen tarvittavat ainekset
 - ainekset (tämän ja reseptien välillä many-to-many)
 - missä tehdään (uuni, pannu, grilli, pata?)
+
+
+ToDo:
+- API etusivu
+- Validation
+- Etusivu
+- ainesten lisääminen databaseen reseptin luomisen yhteydessä
+- ainesten valinta reseptiin helpommaksi
