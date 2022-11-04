@@ -1,57 +1,57 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
-xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
+	xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Ruokalista app | By Unkkis</title>
-	<meta charset="UTF-8" />
- 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
- 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruokalista app | By Unkkis</title>
+<meta charset="UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+<div th:insert="navbar :: navbar">  </div>
 
-<div class="container">
-	<div class="row justify-content-start">
-		<div class="col-lg-4">
-			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
-		</div>
-		<div class="col-lg-8">
-			<h3>Moikka [[${#httpServletRequest.remoteUser}]]! Tervetuloa ruokalista Appsiin!</h3>
-		</div>
-
-	</div>
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-lg py-5">
-			<a href="/allRecipes" class="btn btn-primary">Täältä näet kaikki reseptit</a>
-			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
-			<a href="/ingredients" class="btn btn-primary">Ainesosalista</a>
-			<a href="/categories" class="btn btn-primary">Reseptikategoriat</a>
-			<a href="/users" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Käyttäjähallinta</a>
-		</div>
-		<div class="col-lg py-5">
-			<p>Tässä appsissa voit luoda ruokalistoja. Appsiin on myös API, jos haluat tehdä jotain muuta kivaa tämän päälle.</p>
-		</div>
-
-	</div>
-	<div class="row">
-		<div class="col-lg">
-			<div>
-			<h3>Linkit APIin</h3>
-			<p>APIn osat löytyvät /api</p>
+	<div class="container">
+		<div class="row justify-content-start">
+			<div class="col-lg-8">
+				<h3>Moikka ! Tervetuloa ruokalista Appsiin!</h3>
 			</div>
-			<div>
-			<a href="/api" class="btn btn-primary">/api arpoo yhden reseptin</a>
-			<a href="/api/random_7days" class="btn btn-primary">/api/random_{number}days arpoo halutun määrän</a>
-			<a href="/api/recipes/1" class="btn btn-primary">GET /api/recipes/{number} etsii ID:n avulla</a>
-			<p>Lisäksi toki voit lisätä tai poistaa, sekä muokata reseptejä</p>
-			<a href="/api/ingredients" class="btn btn-primary">/api/ingredients listaa ainesosat</a>
-			<a href="/api/categories" class="btn btn-primary">/api/categories listaa kategoriat</a>
-			</div>
+
 		</div>
 	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg py-5">
+				<a href="/allRecipes" class="btn btn-primary">Täältä näet kaikki reseptit</a>
+				<a href="/add" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a> 
+				<a href="/ingredients" class="btn btn-primary">Ainesosalista</a> 
+				<a href="/categories" class="btn btn-primary">Reseptikategoriat</a> 
+				<a href="/users" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Käyttäjähallinta</a>
+			</div>
+			<div class="col-lg py-5">
+				<p>Tässä appsissa voit luoda ruokalistoja. Appsiin on myös API,
+					jos haluat tehdä jotain muuta kivaa tämän päälle.</p>
+			</div>
 
-</div>
+		</div>
+		<div class="row">
+			<div class="col-lg">
+				<div>
+					<h3>Linkit APIin</h3>
+					<p>APIn osat löytyvät /api</p>
+				</div>
+				<div>
+					<a href="/api" class="btn btn-primary">/api arpoo yhden	reseptin</a>
+					<a href="/api/random_7days" class="btn btn-primary">/api/random_{number}days arpoo halutun määrän</a>
+					<a href="/api/recipes/1" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">GET/api/recipes/{number} etsii ID:n avulla</a>
+					<p>Lisäksi toki voit lisätä tai poistaa, sekä muokata reseptejä</p>
+					<a href="/api/ingredients" class="btn btn-primary">/api/ingredients	listaa ainesosat</a>
+					<a href="/api/categories" class="btn btn-primary">/api/categories listaa kategoriat</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
 
 </body>
 </html>

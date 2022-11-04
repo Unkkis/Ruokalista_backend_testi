@@ -11,7 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Recipe {
@@ -20,7 +21,8 @@ public class Recipe {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull(message = "Pakollinen kenttä")
+	@NotEmpty(message = "Pakollinen kenttä")
+	@Size(min=2, max=50, message= "Syötä vähintään 2 ja enintään 50 merkkiä")
 	private String name;
 	
 	@ManyToMany
@@ -30,9 +32,13 @@ public class Recipe {
 			inverseJoinColumns = @JoinColumn(name = "food_item_id"))
 	private Set<FoodItem> foodIngredients;
 	
+	@NotEmpty(message = "Pakollinen kenttä")
 	@Column (name="cooking_time")
 	private String cookingTime;
+	
+	@NotEmpty(message = "Pakollinen kenttä")
 	private String preparation;
+	
 	@Column (name="link_to_webpage")
 	private String linkToWebpage;
 	
@@ -146,7 +152,7 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recept [id=" + id + ", ingredients=" + foodIngredients + ", cookingTime=" + cookingTime + ", preparation="
+		return "Recipe [id=" + id + ", ingredients=" + foodIngredients + ", cookingTime=" + cookingTime + ", preparation="
 				+ preparation + ", linkToWebpage=" + linkToWebpage + ", category=" + category + "]";
 	}
 	

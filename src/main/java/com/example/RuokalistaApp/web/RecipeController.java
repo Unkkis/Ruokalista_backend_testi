@@ -1,5 +1,8 @@
 package com.example.RuokalistaApp.web;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +58,7 @@ public class RecipeController {
 		try{
 		    Integer.parseInt(recipe.getCookingTime());
 		}catch (NumberFormatException ex) {
-		    result.rejectValue("cookingTime", "err.cookingTime", "Et syöttänyt aikaa oikein.");
+		    result.rejectValue("cookingTime", "err.cookingTime", "Syötä aika numeroina minuuteissa.");
 		}
 		if (result.hasErrors()) {
 			model.addAttribute("categories", categoryRepository.findAll());
@@ -86,7 +89,19 @@ public class RecipeController {
 	}
 	
 	//make a random recipe list for a week (7 days)
-
+	@GetMapping("/weekMenu")
+	public String generateWeeksMenu(Model model) {
+		ArrayList<Recipe> allRecipes = (ArrayList<Recipe>) recipeRepository.findAll();
+		Collections.shuffle(allRecipes);
+		int howManyRecipes = 7;
+		ArrayList<Recipe> sevenRecipes = new ArrayList<Recipe>();
+		for (int i = 0; i<howManyRecipes; i++) {
+			sevenRecipes.add(allRecipes.get(i));
+		}
+		model.addAttribute("recipes", sevenRecipes);
+		System.out.println(sevenRecipes);
+		return "weekMenu";
+	}
 
 
 	

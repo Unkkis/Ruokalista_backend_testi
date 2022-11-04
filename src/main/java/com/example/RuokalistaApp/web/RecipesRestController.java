@@ -51,11 +51,11 @@ public class RecipesRestController {
 		ArrayList<Recipe> allRecipes = (ArrayList<Recipe>) recipeRepository.findAll();
 		Collections.shuffle(allRecipes);
 		int howManyRecipes = number;
-		ArrayList<Recipe> sevenRecipes = new ArrayList<Recipe>();
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 		for (int i = 0; i<howManyRecipes; i++) {
-			sevenRecipes.add(allRecipes.get(i));
+			recipes.add(allRecipes.get(i));
 		}
-		return sevenRecipes;
+		return recipes;
 	}
 		
 	//find recipe with ID

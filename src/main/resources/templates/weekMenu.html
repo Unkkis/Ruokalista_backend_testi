@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Ruokalista app | By Unkkis</title>
+	<meta charset="UTF-8" />
+ 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:insert="navbar :: navbar">  </div>
+<div class="container">
+	<div class="row justify-content-start">
+		<div class="col-lg-8">
+			<h3>Viikon ruokalista</h3>
+			<p>Alla on kaikista resepteistä arvottu viikon ruokalista</p>
+		</div>
+	</div>
+	<div class="row">
+	</div>
+</div>
+<div class="container">
+<table>
+<tr th:each="recipe : ${recipes}">
+<td th:text="${recipe.name}"></td>
+</tr>
+</table>
+</div>
+</body>
+</html>

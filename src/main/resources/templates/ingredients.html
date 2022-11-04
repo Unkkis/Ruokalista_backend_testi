@@ -7,13 +7,9 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
  	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
+<div th:insert="navbar :: navbar">  </div>
 <div class="container">
 	<div class="row justify-content-start">
-		<div class="col-lg-4">
-			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
-			<a href="/main" class="btn btn-primary">Etusivulle</a>
-			<a href="/allRecipes" class="btn btn-primary">Reseptilistaan</a>
-		</div>
 		<div class="col-lg-8">
 			<h3>Ainesosat</h3>
 		</div>
@@ -22,9 +18,11 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 <div class="container">
 	<div class="row">
 		<div class="col-lg">
-			<form th:object="${ingredient}" th:action="@{addIngredient}" method="post">
+			<form th:object="${ingredient}" th:action="@{addIngredient}" action="#" method="post">
 				<label for="newIngredient">Anna ainesosa</label>
 				<input type="text" th:field="*{name}" class="form-control">
+				<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span>
+				
 				<button type="submit" class="btn btn-primary">Lisää</button>
 			</form>
 		</div>

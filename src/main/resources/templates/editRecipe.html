@@ -7,13 +7,9 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
  	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
+<div th:insert="navbar :: navbar">  </div>
 <div class="container">
 	<div class="row justify-content-start">
-		<div class="col-lg-4">
-			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
-			<a href="/main" class="btn btn-primary">Etusivulle</a>
-			<a href="/allRecipes" class="btn btn-primary">Reseptilistaan</a>
-		</div>
 		<div class="col-lg-8">
 			<h3>Tässä voit muokata reseptiä</h3>
 		</div>

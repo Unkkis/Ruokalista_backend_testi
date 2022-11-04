@@ -11,13 +11,9 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 	</style>
 </head>
 <body>
+<div th:insert="navbar :: navbar">  </div>
 <div class="container">
 	<div class="row justify-content-start">
-		<div class="col-lg-4">
-			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
-			<a href="/main" class="btn btn-primary">Etusivulle</a>
-			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
-		</div>
 		<div class="col-lg-8">
 			<h3>Tässä on kaikki reseptit</h3>
 		</div>
@@ -46,11 +42,8 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 						</ul>
 					</td>
 					<td th:text="${recipe.preparation}" ></td>
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${recipe.id})}"
-						th:onclick="if(!(confirm('Haluatko varmasti poistaa reseptin?') )) return false" 
-						class="btn btn-danger">Delete</a></td>
-					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit{id}(id=${recipe.id})}"
-						class="btn btn-primary">Edit</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${recipe.id})}"	th:onclick="if(!(confirm('Haluatko varmasti poistaa reseptin?') )) return false" class="btn btn-danger">Delete</a></td>
+					<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/edit{id}(id=${recipe.id})}" class="btn btn-primary">Edit</a></td>
 				</tr>
 			</table>
 		</div>

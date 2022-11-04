@@ -1,4 +1,4 @@
-package com.example.RuokalistaApp.web;
+package com.example.RuokalistaApp.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

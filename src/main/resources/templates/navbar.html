@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Ruokalista app | By Unkkis</title>
+	<meta charset="UTF-8" />
+ 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+
+	<nav th:fragment="navbar" class="navbar navbar-dark bg-primary">
+		<a href="#" class="navbar-brand">Jussin RuokalistaAppi</a>
+		<div class="navbar">
+			<a href="/logout" class="btn btn-primary">Kirjaudu ulos</a>
+			<a href="/main" class="btn btn-primary">Etusivulle</a>
+			<a href="/weekMenu" class="btn btn-primary">Viikon ruokalista</a>
+			<a href="/allRecipes" class="btn btn-primary">Kaikki reseptit</a>
+			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
+			<a href="/ingredients" class="btn btn-primary">Ainesosat</a>
+			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
+			<a href="/users" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Käyttäjähallinta</a>
+		</div>
+		<p class="navbar-brand">Olet kirjautuneena käyttäjänä: [[${#httpServletRequest.remoteUser}]]</p>		
+	</nav>
+
+</body>
+</html>
