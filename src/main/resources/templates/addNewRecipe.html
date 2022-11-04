@@ -4,8 +4,8 @@
 <head>
 <title>Ruokalista app | By Unkkis</title>
 <meta charset="UTF-8" />
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"
-	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 <div th:insert="navbar :: navbar">  </div>
@@ -54,7 +54,7 @@
 			</div>
 			<div class="col-3">
 				<div class="form-group">
-					<label for="ingredients">Ainesosat tietokannassa (Ctrl näppäimellä voit valita useita")</label> 
+					<label for="ingredients">Valitse alta ainesosat:</label> 
 					<select size="20" th:field="*{foodIngredients}" name="ingredients" id="ingredients" class="form-control" multiple>
 						<option th:each="ingredient: ${ingredients}" th:value="${ingredient.id}" th:text="${ingredient.name}"></option>
 					</select>
@@ -65,5 +65,14 @@
 			</div>
 		</form>
 	</div>
+<script>
+jQuery('option').mousedown(function(e) {
+    e.preventDefault();
+    jQuery(this).toggleClass('selected');
+  
+    jQuery(this).prop('selected', !jQuery(this).prop('selected'));
+    return false;
+});
+</script>
 </body>
 </html>

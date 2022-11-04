@@ -17,7 +17,7 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 			<a href="/allRecipes" class="btn btn-primary">Kaikki reseptit</a>
 			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
 			<a href="/ingredients" class="btn btn-primary">Ainesosat</a>
-			<a href="/add" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a>
+			<a href="/categories" class="btn btn-primary"  sec:authorize="hasAuthority('ADMIN')">Kategoriat</a>
 			<a href="/users" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Käyttäjähallinta</a>
 		</div>
 		<div>
