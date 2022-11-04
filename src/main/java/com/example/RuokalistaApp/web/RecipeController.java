@@ -58,27 +58,31 @@ public class RecipeController {
 	//save recipe
 	@PostMapping("/save")
 	public String saveRecipe(@Valid Recipe recipe, BindingResult result, Model model) {
-		//read new ingredients and make a list from them
-		List<String> newIngredients = Arrays.asList(recipe.getNewIngredients().split(","));
-		for (int i = 0; i < newIngredients.size(); i++) {
-			String newIngredient = newIngredients.get(i).trim();
-			newIngredient = newIngredient.substring(0, 1).toUpperCase() +  newIngredient.substring(1).toLowerCase();
-			boolean isInDB = false;
-			
-			List<FoodItem> allIngredients = (List<FoodItem>) foodItemRepository.findAll();
-			for (int a = 0; a<allIngredients.size(); a++) {	
-				if (allIngredients.get(a).getName().toUpperCase().equals(newIngredient.toUpperCase())) {
-					isInDB = true;
-				}
+		
+		if (!recipe.getNewIngredients().isEmpty()) {
+			//read new ingredients and make a list from them
+			List<String> newIngredients = Arrays.asList(recipe.getNewIngredients().split(","));
+			for (int i = 0; i < newIngredients.size(); i++) {
+				String newIngredient = newIngredients.get(i).trim();
+				newIngredient = newIngredient.substring(0, 1).toUpperCase() +  newIngredient.substring(1).toLowerCase();
+				boolean isInDB = false;
 				
-			}
-			if (isInDB == false) {
-			FoodItem newFoodItem = new FoodItem();
-			newFoodItem.setName(newIngredient);
-			foodItemRepository.save(newFoodItem);
-			recipe.getFoodIngredients().add(foodItemRepository.findByName(newIngredient));
+				List<FoodItem> allIngredients = (List<FoodItem>) foodItemRepository.findAll();
+				for (int a = 0; a<allIngredients.size(); a++) {	
+					if (allIngredients.get(a).getName().toUpperCase().equals(newIngredient.toUpperCase())) {
+						isInDB = true;
+					}
+					
+				}
+				if (isInDB == false) {
+				FoodItem newFoodItem = new FoodItem();
+				newFoodItem.setName(newIngredient);
+				foodItemRepository.save(newFoodItem);
+				recipe.getFoodIngredients().add(foodItemRepository.findByName(newIngredient));
+				}
 			}
 		}
+	
 		
 		try{
 		    Integer.parseInt(recipe.getCookingTime());
