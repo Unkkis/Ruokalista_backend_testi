@@ -15,8 +15,7 @@ Databasessa taulut siis (tämä ei vielä valmis):
 
 
 ToDo:
-- API etusivu
 - Etusivu
 - ainesten lisääminen databaseen reseptin luomisen yhteydessä
 - ainesten valinta reseptiin helpommaksi
-- Kuvien lisääminen
+

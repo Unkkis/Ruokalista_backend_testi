@@ -22,14 +22,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg py-5">
-				<a href="/allRecipes" class="btn btn-primary">Täältä näet kaikki reseptit</a>
-				<a href="/add" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Reseptin lisäys</a> 
-				<a href="/ingredients" class="btn btn-primary">Ainesosalista</a> 
-				<a href="/categories" class="btn btn-primary">Reseptikategoriat</a> 
-				<a href="/users" class="btn btn-primary" sec:authorize="hasAuthority('ADMIN')">Käyttäjähallinta</a>
+				<div class="list-group">
+					<a href="/weekMenu" class="list-group-item list-group-item-action">Tästä saat arvottua viikon ruokalistan</a>
+					<a href="/allRecipes" class="list-group-item list-group-item-action list-group-item-primary">Täältä näet kaikki reseptit</a>
+					<a href="/add" sec:authorize="hasAuthority('ADMIN')" class="list-group-item list-group-item-action">Reseptin lisäys</a> 
+					<a href="/ingredients" class="list-group-item list-group-item-action list-group-item-primary">Ainesosalista</a> 
+					<a href="/categories" class="list-group-item list-group-item-action">Reseptikategoriat</a> 
+					<a href="/users" sec:authorize="hasAuthority('ADMIN')" class="list-group-item list-group-item-action list-group-item-primary">Käyttäjähallinta</a>
+				</div>
 			</div>
 			<div class="col-lg py-5">
-				<p>Tässä appsissa voit luoda ruokalistoja. Appsiin on myös API,
+				<p>Tällä appsilla voit tallettaa reseptejä ja arpoa niistä viikon ruokalistan (tai vaikka vain yhden reseptin). Appsiin on myös API,
 					jos haluat tehdä jotain muuta kivaa tämän päälle.</p>
 			</div>
 

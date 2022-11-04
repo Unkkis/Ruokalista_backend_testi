@@ -19,11 +19,43 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 	</div>
 </div>
 <div class="container">
-<table>
-<tr th:each="recipe : ${recipes}">
-<td th:text="${recipe.name}"></td>
-</tr>
-</table>
+	<table class="table table-bordered table-light">
+		<thead class="table-dark">
+			<tr>
+				<th scope="col">Maanantai</th>
+				<th scope="col">Tiistai</th>
+				<th scope="col">Keskiviikko</th>
+				<th scope="col">Torstai</th>
+				<th scope="col">Perjantai</th>
+				<th scope="col">Lauantai</th>
+				<th scope="col">Sunnuntai</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="table-success">
+				<td th:each="recipe : ${recipes}" th:text="${recipe.name}"/>
+			</tr>
+			<tr>
+				<td th:each="recipe : ${recipes}" th:text="${recipe.category.name}"/>
+			</tr>
+			<tr>
+				<td th:each="recipe : ${recipes}" th:text="|Valmistusaika ${recipe.cookingTime} min|"/>
+			</tr>
+			<tr>
+				<td th:each="recipe : ${recipes}">Ainesosat:
+					<ul class="list-unstyled m-0"  th:each="ingredient : ${recipe.foodIngredients}">
+						<li th:text="${ingredient.name}"></li>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td th:each="recipe : ${recipes}"><a th:href="@{|http://${recipe.linkToWebpage}|}">Linkki</a></td>
+			</tr>
+			<tr>
+				<td th:each="recipe : ${recipes}" th:text="${recipe.preparation}"/>
+			</tr>
+		</tbody>
+	</table>
 </div>
 </body>
 </html>
