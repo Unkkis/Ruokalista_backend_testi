@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -31,6 +32,9 @@ public class Recipe {
 			joinColumns = @JoinColumn(name="recipe_id"),
 			inverseJoinColumns = @JoinColumn(name = "food_item_id"))
 	private Set<FoodItem> foodIngredients;
+	
+	@Transient
+	private String newIngredients;
 	
 	@NotEmpty(message = "Pakollinen kenttä")
 	@Column (name="cooking_time")
@@ -84,6 +88,17 @@ public class Recipe {
 		this.preparation = preparation;
 		this.linkToWebpage = linkToWebpage;
 		this.category = category;
+	}
+	
+	
+
+	public String getNewIngredients() {
+		return newIngredients;
+	}
+
+
+	public void setNewIngredients(String newIngredients) {
+		this.newIngredients = newIngredients;
 	}
 
 
@@ -152,8 +167,9 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", ingredients=" + foodIngredients + ", cookingTime=" + cookingTime + ", preparation="
-				+ preparation + ", linkToWebpage=" + linkToWebpage + ", category=" + category + "]";
+		return "Recipe [id=" + id + ", name=" + name + ", foodIngredients=" + foodIngredients + ", newIngredients="
+				+ newIngredients + ", cookingTime=" + cookingTime + ", preparation=" + preparation + ", linkToWebpage="
+				+ linkToWebpage + ", category=" + category + "]";
 	}
 	
 	

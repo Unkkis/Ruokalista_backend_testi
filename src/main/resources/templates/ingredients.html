@@ -17,7 +17,7 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-lg">
+		<div class="col-lg" th:fragment="addIngredients">
 			<form th:object="${ingredient}" th:action="@{addIngredient}" action="#" method="post">
 				<label for="newIngredient">Anna ainesosa</label>
 				<input type="text" th:field="*{name}" class="form-control">

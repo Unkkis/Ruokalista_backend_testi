@@ -1,7 +1,9 @@
 package com.example.RuokalistaApp.web;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.RuokalistaApp.domain.CategoryRepository;
+import com.example.RuokalistaApp.domain.FoodItem;
 import com.example.RuokalistaApp.domain.FoodItemRepository;
 import com.example.RuokalistaApp.domain.Recipe;
 import com.example.RuokalistaApp.domain.RecipeRepository;
@@ -55,6 +58,28 @@ public class RecipeController {
 	//save recipe
 	@PostMapping("/save")
 	public String saveRecipe(@Valid Recipe recipe, BindingResult result, Model model) {
+		//read new ingredients and make a list from them
+		List<String> newIngredients = Arrays.asList(recipe.getNewIngredients().split(","));
+		for (int i = 0; i < newIngredients.size(); i++) {
+			String newIngredient = newIngredients.get(i).trim();
+			newIngredient = newIngredient.substring(0, 1).toUpperCase() +  newIngredient.substring(1).toLowerCase();
+			boolean isInDB = false;
+			
+			List<FoodItem> allIngredients = (List<FoodItem>) foodItemRepository.findAll();
+			for (int a = 0; a<allIngredients.size(); a++) {	
+				if (allIngredients.get(a).getName().toUpperCase().equals(newIngredient.toUpperCase())) {
+					isInDB = true;
+				}
+				
+			}
+			if (isInDB == false) {
+			FoodItem newFoodItem = new FoodItem();
+			newFoodItem.setName(newIngredient);
+			foodItemRepository.save(newFoodItem);
+			recipe.getFoodIngredients().add(foodItemRepository.findByName(newIngredient));
+			}
+		}
+		
 		try{
 		    Integer.parseInt(recipe.getCookingTime());
 		}catch (NumberFormatException ex) {
