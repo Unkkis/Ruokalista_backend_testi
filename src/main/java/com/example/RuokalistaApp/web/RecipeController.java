@@ -59,7 +59,9 @@ public class RecipeController {
 	@PostMapping("/save")
 	public String saveRecipe(@Valid Recipe recipe, BindingResult result, Model model) {
 		
+		//check if there are any new ingredients
 		if (!recipe.getNewIngredients().isEmpty()) {
+			
 			//read new ingredients and make a list from them
 			List<String> newIngredients = Arrays.asList(recipe.getNewIngredients().split(","));
 			for (int i = 0; i < newIngredients.size(); i++) {
@@ -67,6 +69,7 @@ public class RecipeController {
 				newIngredient = newIngredient.substring(0, 1).toUpperCase() +  newIngredient.substring(1).toLowerCase();
 				boolean isInDB = false;
 				
+			//check whether they are in the DB already	
 				List<FoodItem> allIngredients = (List<FoodItem>) foodItemRepository.findAll();
 				for (int a = 0; a<allIngredients.size(); a++) {	
 					if (allIngredients.get(a).getName().toUpperCase().equals(newIngredient.toUpperCase())) {
@@ -74,21 +77,25 @@ public class RecipeController {
 					}
 					
 				}
+			//add only the ones that are not in DB
 				if (isInDB == false) {
 				FoodItem newFoodItem = new FoodItem();
 				newFoodItem.setName(newIngredient);
+			//add new ingredient to DB
 				foodItemRepository.save(newFoodItem);
+			//add the new ingredient to recipe (from DB)
 				recipe.getFoodIngredients().add(foodItemRepository.findByName(newIngredient));
 				}
 			}
 		}
 	
-		
+		//check if cooking time is INT or not
 		try{
 		    Integer.parseInt(recipe.getCookingTime());
 		}catch (NumberFormatException ex) {
 		    result.rejectValue("cookingTime", "err.cookingTime", "Syötä aika numeroina minuuteissa.");
 		}
+		//if any errors, return with error messages
 		if (result.hasErrors()) {
 			model.addAttribute("categories", categoryRepository.findAll());
 			model.addAttribute("ingredients", foodItemRepository.findAll());
@@ -120,8 +127,12 @@ public class RecipeController {
 	//make a random recipe list for a week (7 days)
 	@GetMapping("/weekMenu")
 	public String generateWeeksMenu(Model model) {
+		
+		//get all recipes and shuffle them
 		ArrayList<Recipe> allRecipes = (ArrayList<Recipe>) recipeRepository.findAll();
 		Collections.shuffle(allRecipes);
+		
+		//pick 7 first recipes and add them to array
 		int howManyRecipes = 7;
 		ArrayList<Recipe> sevenRecipes = new ArrayList<Recipe>();
 		for (int i = 0; i<howManyRecipes; i++) {

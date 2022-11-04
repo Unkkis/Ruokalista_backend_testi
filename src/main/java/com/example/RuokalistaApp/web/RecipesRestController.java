@@ -31,7 +31,7 @@ public class RecipesRestController {
 	private CategoryRepository categoryRepository;
 	
 	//search and return all recipes from database
-	@GetMapping("/api/all")
+	@GetMapping("/api/recipes")
 	public Iterable<Recipe> getAllRecipes() {
 		return recipeRepository.findAll();
 	}
@@ -48,6 +48,7 @@ public class RecipesRestController {
 	//return 7 random recipes from database
 	@GetMapping("/api/random_{number}days")
 	public  Iterable<Recipe> getSevenRecipes(@PathVariable("number")int number){
+		//get all recipes from DB, shuffle them and pick the first X number of them
 		ArrayList<Recipe> allRecipes = (ArrayList<Recipe>) recipeRepository.findAll();
 		Collections.shuffle(allRecipes);
 		int howManyRecipes = number;

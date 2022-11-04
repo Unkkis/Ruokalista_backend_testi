@@ -15,6 +15,8 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Recipe {
 	
@@ -33,7 +35,9 @@ public class Recipe {
 			inverseJoinColumns = @JoinColumn(name = "food_item_id"))
 	private Set<FoodItem> foodIngredients;
 	
+	//this is just for adding ingredients that are not in DB to recipe (and to DB at the same time)
 	@Transient
+	@JsonIgnore
 	private String newIngredients;
 	
 	@NotEmpty(message = "Pakollinen kenttä")
