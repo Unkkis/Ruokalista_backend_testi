@@ -21,6 +21,7 @@ xmlns:sec="http://www.thymelead.org/thymeleaf-extras-springsecurity5">
 			<form th:object="${category}" th:action="@{addCategory}" method="post">
 				<label for="newCategory">Anna kategorian nimi</label>
 				<input type="text" th:field="*{name}" class="form-control">
+				<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span><br>
 				<button type="submit" class="btn btn-primary">Lisää</button>
 			</form>
 		</div>

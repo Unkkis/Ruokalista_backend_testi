@@ -19,7 +19,7 @@ public class FoodItem {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotEmpty
+	@NotEmpty (message="Ei voi olla tyhjä")
 	private String name;
 	
 	@JsonIgnore

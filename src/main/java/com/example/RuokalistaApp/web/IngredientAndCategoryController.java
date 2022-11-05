@@ -28,7 +28,7 @@ public class IngredientAndCategoryController {
 	//add (+modify) fooditems
 	@GetMapping("/ingredients")
 	public String allIngredients(Model model) {
-		model.addAttribute("ingredient", new FoodItem());
+		model.addAttribute("foodItem", new FoodItem());
 		model.addAttribute("ingredients", foodItemRepository.findAll());
 		return "ingredients";
 	}
@@ -37,8 +37,6 @@ public class IngredientAndCategoryController {
 	public String addIngredient(@Valid FoodItem ingredient, BindingResult result, Model model) {
 		
 			if (ingredient.getName().length() == 0) {
-				result.rejectValue("name", "err.name", "Ei voi olla tyhjä");
-				model.addAttribute("ingredient", ingredient);
 				model.addAttribute("ingredients", foodItemRepository.findAll());
 				return "ingredients";
 			}
@@ -57,7 +55,7 @@ public class IngredientAndCategoryController {
 
 			}
 			if (result.hasErrors()) {
-				model.addAttribute("ingredient", ingredient);
+			//	model.addAttribute("ingredient", ingredient);
 				model.addAttribute("ingredients", foodItemRepository.findAll());
 				return "ingredients";
 			}
@@ -77,8 +75,13 @@ public class IngredientAndCategoryController {
 	}
 	//add category
 	@PostMapping("/addCategory")
-	public String addCategory(Model model, Category category) {
-						
+	public String addCategory(@Valid Category category, BindingResult result, Model model) {
+			
+			if (category.getName().isEmpty()) {
+				model.addAttribute("categories", categoryRepository.findAll());
+				return "categories";
+			}
+		
 			//Change the name to match the formatting in DB
 			String newName = category.getName().trim();
 			newName = newName.substring(0, 1).toUpperCase() +  newName.substring(1).toLowerCase();
@@ -87,15 +90,18 @@ public class IngredientAndCategoryController {
 			List<Category> allCategories = (List<Category>) categoryRepository.findAll();
 			for (int i = 0; i<allCategories.size(); i++) {	
 				if (allCategories.get(i).getName().toUpperCase().equals(newName.toUpperCase())) {
-					model.addAttribute("isAllready", category);
-					System.out.println("Ingredient allready in DB");
-					return "redirect:ingredients";
+					result.rejectValue("name", "err.name", "Ainesosa on jo tietokannassa");
+					
 				}
 
 			}
+			if (result.hasErrors()) {
+				model.addAttribute("categories", categoryRepository.findAll());
+				return "categories";
+			}
 			category.setName(newName);
 			categoryRepository.save(category);
-	return "redirect:ingredients";
+	return "redirect:categories";
 	}
 	
 }
