@@ -1,5 +1,5 @@
 package com.example.RuokalistaApp.web;
-
+/*
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class UserController {
 	ApplicationUserRepository userRepository;
 	
 	//Users page (list, add and remove users)
-	@PreAuthorize("hasAuthority('ADMIN')")
+//	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/users")
 	public String listAndModifyUsers(Model model) {
 		model.addAttribute("newUser", new UserRegistration());
@@ -78,4 +78,4 @@ public class UserController {
 	
 
 	//edit USERS?
-}
+}*/

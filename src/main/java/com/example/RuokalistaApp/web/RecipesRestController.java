@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +22,7 @@ import com.example.RuokalistaApp.domain.FoodItemRepository;
 import com.example.RuokalistaApp.domain.Recipe;
 import com.example.RuokalistaApp.domain.RecipeRepository;
 
+@CrossOrigin
 @RestController
 public class RecipesRestController {
 	
@@ -31,6 +34,7 @@ public class RecipesRestController {
 	private CategoryRepository categoryRepository;
 	
 	//search and return all recipes from database
+	
 	@GetMapping("/api/recipes")
 	public Iterable<Recipe> getAllRecipes() {
 		return recipeRepository.findAll();
@@ -66,6 +70,7 @@ public class RecipesRestController {
 	}
 	
 	//delete recipe by ID
+//	@PreAuthorize("hasAuthority('ADMIN')")
 	@DeleteMapping("/api/recipes/{id}")
 	public Iterable<Recipe> deleteRecipe(@PathVariable("id")Long id) {
 		recipeRepository.deleteById(id);
@@ -79,6 +84,7 @@ public class RecipesRestController {
 	}
 	
 	//edit recipe
+//	@PreAuthorize("hasAuthority('ADMIN')")
 	@PutMapping("/api/recipes/{id}")
 	public Recipe editRecipe(@RequestBody Recipe editedRecipe, @PathVariable Long id) {
 		editedRecipe.setId(id);

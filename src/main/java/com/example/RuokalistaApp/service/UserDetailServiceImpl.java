@@ -1,5 +1,5 @@
 package com.example.RuokalistaApp.service;
-
+/*
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +11,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.RuokalistaApp.domain.ApplicationUser;
 import com.example.RuokalistaApp.domain.ApplicationUserRepository;
-
+*/
 
 /**
  * This class is used by spring security to authenticate and authorize user
  **/
-
+/*
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 	
@@ -38,4 +38,4 @@ public class UserDetailServiceImpl implements UserDetailsService {
 			return user;
 		}
 }
-
+*/

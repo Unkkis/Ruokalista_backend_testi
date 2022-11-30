@@ -1,0 +1,15 @@
+FROM eclipse-temurin:17-jdk-jammy
+
+RUN mkdir /home/nobody
+WORKDIR /home/nobody
+
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+
+RUN ./mvnw dependency:resolve
+
+COPY src ./src
+
+USER 65534
+
+CMD ["./mvnw", "spring-boot:run"]
